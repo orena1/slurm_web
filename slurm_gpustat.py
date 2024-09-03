@@ -623,7 +623,9 @@ def gpu_usage(resources: dict, partition: Optional[str] = None) -> dict:
        resource_flag = "gres"
     else:
        resource_flag = "tres-per-node"
-    if int(slurm_version[0:2]) >= 21:
+    if int(slurm_version[0:2]) >= 23:
+        gpu_identifier = 'gres/gpu'
+    elif int(slurm_version[0:2]) >= 21:
         gpu_identifier = 'gres:gpu'
     else:
         gpu_identifier = 'gpu'
